@@ -12,7 +12,7 @@ namespace csharpcore
      */
     public class BackstagePassesItem : GeneralItem
     {
-        BackstagePassesItem(Item item) : base(item) { }
+        public BackstagePassesItem(Item item) : base(item) { }
 
         public override void UpdateItemAfterOneDay()
         {
@@ -21,11 +21,11 @@ namespace csharpcore
             {
                 Quality = 0;
             }
-            else if (SellIn <= 5)
+            else if (SellIn < 5)
             {
                 Quality += 3;
             }
-            else if (SellIn <= 10)
+            else if (SellIn < 10)
             {
                 Quality += 2;
             }

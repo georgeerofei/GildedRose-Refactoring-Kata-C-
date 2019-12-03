@@ -10,7 +10,7 @@ namespace csharpcore.Items
     class ConjuredItem :GeneralItem
     {
       
-        ConjuredItem(Item item) : base(item) {}
+        public ConjuredItem(Item item) : base(item) {}
 
         public override void UpdateItemAfterOneDay()
         {

@@ -11,7 +11,7 @@ namespace csharpcore.Items
             -"Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
          */
-        LegendaryItem(Item item) : base(item)
+        public LegendaryItem(Item item) : base(item)
         {
             Quality = 80;
         }
