@@ -4,7 +4,7 @@ using System.Text;
 
 namespace csharpcore.Items
 {
-    class CheeseItem:GeneralItem
+    class CheeseItem:GeneralItem     //AgedBrie
     {
         public CheeseItem(Item item) : base(item) { }
 
