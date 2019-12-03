@@ -16,8 +16,6 @@ namespace csharpcore.Items
         {
             SellIn = SellIn - 1;
             Quality = SellIn >= 0 ? Quality - 2 : Quality - 4;
-            if (Quality < 0)
-                Quality = 0;
         }
     }
 }

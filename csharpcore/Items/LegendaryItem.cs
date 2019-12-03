@@ -11,6 +11,14 @@ namespace csharpcore.Items
             -"Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
          */
+        public override int Quality
+        {
+            protected set
+            {
+                ;//do nothing
+            }
+        }
+
         public LegendaryItem(Item item) : base(item)
         {
             Quality = 80;
@@ -18,7 +26,7 @@ namespace csharpcore.Items
 
         public override void UpdateItemAfterOneDay()
         {
-            SellIn = SellIn - 1;
+            ;//do nothing
         }
     }
 }

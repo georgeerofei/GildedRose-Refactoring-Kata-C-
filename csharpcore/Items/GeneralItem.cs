@@ -22,14 +22,24 @@ namespace csharpcore
         }
         public string Name { get => _item.Name;  protected set => _item.Name = value; }
         public int SellIn{  get => _item.SellIn; protected set => _item.SellIn = value; }
-        public int Quality { get => _item.Quality; protected set => _item.Quality = value; }
+        public virtual int Quality { 
+            get => _item.Quality; 
+            
+            protected set
+            {
+                if (value > MaxQuality)
+                    _item.Quality = MaxQuality;
+                else if (value < 0)
+                    _item.Quality = 0;
+                else
+                    _item.Quality = value;
+            }
+        }
 
         public virtual void UpdateItemAfterOneDay() 
         {
             SellIn = SellIn - 1;
             Quality= SellIn >= 0 ? Quality - 1 : Quality - 2;
-            if (Quality < 0)
-                Quality = 0;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace csharpcore
 {
-    interface IItem
+    public interface IItem
     {
         string Name { get;  }
         int SellIn { get;   }

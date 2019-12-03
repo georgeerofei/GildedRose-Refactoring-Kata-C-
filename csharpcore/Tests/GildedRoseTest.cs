@@ -10,10 +10,11 @@ namespace csharpcore
         public void Test_IItem_NameOverTime()
         {
             var name = "foo";
-            IList<Item> Items = new List<Item> { new Item { Name = name, SellIn = 0, Quality = 0 } };
+            IList<IItem> Items = new List<IItem> { new GeneralItem(new Item { Name = name, Quality = 0, SellIn = 0 }) };
+
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
-            Assert.Equal("foo", Items[0].Name);
+            Assert.Equal(name, Items[0].Name);
         }
 
 
@@ -72,6 +73,8 @@ namespace csharpcore
         [InlineData(15, 20, 10, 35)]
         [InlineData(15, 20, 15, 50)]
         [InlineData(10, 20, 30, 0)]
+        [InlineData(10, 49, 1, 50)]
+        [InlineData(5, 49, 1, 50)]
         public void Test_BackstagePasses_Quality_OverTime(int sellIn, int intialQuality, int numberOfPassedDays, int expectedQuality)
         {
             IItem item = new BackstagePassesItem(new Item { Name = "Backstage passes to a TAFKAL80ETC concert", Quality = intialQuality, SellIn = sellIn });
@@ -86,10 +89,10 @@ namespace csharpcore
      
 
         [Theory]
-        [InlineData(10, 1, 9)]
-        [InlineData(10, 5, 5)]
-        [InlineData(10, 10, 0)]
-        [InlineData(10, 30, -20)]
+        [InlineData(10, 1, 10)]
+        [InlineData(10, 5, 10)]
+        [InlineData(10, 10, 10)]
+        [InlineData(10, 30, 10)]
         public void Test_LegendaryItem_SellIn_OverTime(int sellIn, int numberOfPassedDays, int expectedSellIn)
         {
             IItem item = new LegendaryItem(new Item { Name = "Sulfuras, Hand of Ragnaros", Quality = 20, SellIn = sellIn });
@@ -142,6 +145,38 @@ namespace csharpcore
         public void Test_ConjuredItem_Quality_OverTime(int sellIn, int intialQuality, int numberOfPassedDays, int expectedQuality)
         {
             IItem item = new ConjuredItem(new Item { Name = "Conjured Mana Cake", Quality = intialQuality, SellIn = sellIn });
+            for (int i = 0; i < numberOfPassedDays; i++)
+            {
+                item.UpdateItemAfterOneDay();
+            }
+            Assert.Equal(expectedQuality, item.Quality);
+        }
+
+
+        [Theory]
+        [InlineData(10, 1, 9)]
+        [InlineData(10, 5, 5)]
+        [InlineData(10, 10, 0)]
+        [InlineData(10, 30, -20)]
+        public void Test_CheeseItem_SellIn_OverTime(int sellIn, int numberOfPassedDays, int expectedSellIn)
+        {
+            IItem item = new ConjuredItem(new Item { Name = "Conjured Mana Cake", Quality = 20, SellIn = sellIn });
+            for (int i = 0; i < numberOfPassedDays; i++)
+            {
+                item.UpdateItemAfterOneDay();
+            }
+            Assert.Equal(expectedSellIn, item.SellIn);
+        }
+
+
+        [Theory]
+        [InlineData(10, 20, 1, 21)]
+        [InlineData(10, 20, 5, 25)]
+        [InlineData(10, 20, 10, 30)]
+        [InlineData(10, 20, 30, 50)]
+        public void Test_CheeseItem_Quality_OverTime(int sellIn, int intialQuality, int numberOfPassedDays, int expectedQuality)
+        {
+            IItem item = new CheeseItem(new Item { Name = "Conjured Mana Cake", Quality = intialQuality, SellIn = sellIn });
             for (int i = 0; i < numberOfPassedDays; i++)
             {
                 item.UpdateItemAfterOneDay();
