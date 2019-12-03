@@ -4,9 +4,6 @@ using System.Text;
 
 namespace csharpcore.Items
 {
-      /*
-       * Conjured" items degrade in Quality twice as fast as normal items
-       */
     class ConjuredItem :GeneralItem
     {
       

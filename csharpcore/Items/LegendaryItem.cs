@@ -7,10 +7,11 @@ namespace csharpcore.Items
     public class LegendaryItem:GeneralItem
     {
         /*
-         * - "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-            -"Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
-
-         */
+         * TODO clarify 
+         *LegendaryItem does not update the SellIn field. This is against the requirements.
+          If this was a real client I would need to clarify with him what should I do. 
+          In these situations the requirements may be lacking in details or the initial implementation may be wrong.
+       */
         public override int Quality
         {
             protected set

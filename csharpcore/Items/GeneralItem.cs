@@ -4,12 +4,6 @@ using System.Text;
 
 namespace csharpcore
 {
-    /*
-     * - Once the sell by date has passed, Quality degrades twice as fast
-	- The Quality of an item is never negative
-	- The Quality of an item is never more than 50
-     */
-
      /*Adapter class for Item*/
     public class GeneralItem : IItem
     {
