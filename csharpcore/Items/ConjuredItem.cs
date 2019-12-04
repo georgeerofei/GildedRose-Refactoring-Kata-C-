@@ -12,7 +12,15 @@ namespace csharpcore.Items
         public override void UpdateItemAfterOneDay()
         {
             SellIn = SellIn - 1;
-            Quality = SellIn >= 0 ? Quality - 2 : Quality - 4;
+            try
+            {
+                Quality = SellIn >= 0 ? Quality - 2 : Quality - 4;
+            }
+            catch 
+            {
+                Quality = MinQuality;
+            }
+            
         }
     }
 }
